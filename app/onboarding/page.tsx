@@ -49,7 +49,7 @@ export default function OnboardingPage() {
     return false
   }
 
-  const navigate_ = (dir: 'forward' | 'back') => {
+  const goToStep = (dir: 'forward' | 'back') => {
     setDirection(dir)
     setAnimating(true)
     setTimeout(() => {
@@ -207,7 +207,7 @@ export default function OnboardingPage() {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <button
-                onClick={() => navigate_('back')}
+                onClick={() => goToStep('back')}
                 style={{
                   fontFamily: 'Outfit, sans-serif', fontSize: '15px', fontWeight: 500,
                   color: '#9C8E82', background: 'none', border: 'none', cursor: 'pointer',
@@ -223,7 +223,7 @@ export default function OnboardingPage() {
                 {step === 1 ? 'Home' : 'Back'}
               </button>
               <button
-                onClick={() => navigate_('forward')}
+                onClick={() => goToStep('forward')}
                 style={{
                   fontFamily: 'Outfit, sans-serif', fontSize: '14px', fontWeight: 400,
                   color: '#C4B8A8', background: 'none', border: 'none', cursor: 'pointer',
@@ -237,7 +237,7 @@ export default function OnboardingPage() {
             </div>
 
             <button
-              onClick={() => navigate_('forward')}
+              onClick={() => goToStep('forward')}
               disabled={!canContinue()}
               style={{
                 padding: '14px 36px', borderRadius: '100px', border: 'none',
