@@ -1,0 +1,24 @@
+model User {
+    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+}
+
+model Genre{
+    id Int @id @default(autoincrement())
+    name String 
+    createdAt DateTime @default(now())
+}
+
+model Book {
+  id Int @id @default(autoincrement())
+  title String 
+  author String 
+  createdAt DateTime @default(now())
+}
+
+
+model Interest {
+  id Int @id @default(autoincrement())
+  name String 
+  createdAt DateTime @default(now())
+}
