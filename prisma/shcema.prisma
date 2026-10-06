@@ -1,0 +1,112 @@
+model User {
+    userid Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+
+    hasInterest HasInterest[]
+    preferences Prefer[]
+}
+
+model Genre{
+    genreid Int @id @default(autoincrement())
+    name String @unique
+    createdAt DateTime @default(now())
+
+    books BelongsTo[]
+    preferences Prefer[]
+}
+
+model Book {
+  bookid Int @id @default(autoincrement())
+  title String 
+  author String 
+  createdAt DateTime @default(now())
+
+  interests InterestBook[]
+  genres BelongsTo[]
+}
+
+
+model Interest {
+  interestid Int @id @default(autoincrement())
+  name String @unique 
+  createdAt DateTime @default(now())
+
+  hasInterest HasInterest[]
+  books InterestBook[]
+
+}
+
+model HasInterest{
+    interestid Int 
+    userid Int 
+    createdAt DateTime @default(now())
+
+    user User @relation(
+        fields: [userid],
+        references: [userid]
+    )
+
+    interest Interest @relation(
+        fields: [interestid],
+        references: [interestid]
+    )
+
+    @@id([interestid, userid])
+}
+
+model BelongsTo {
+    bookid Int 
+    genreid Int 
+    createdAt DateTime @default(now())
+
+    book Book @relation(
+        fields: [bookid], 
+        references: [bookid]
+    )
+
+    genre Genre @relation(
+        fields: [genreid], 
+        references: [genreid]
+    )
+
+    @@id([bookid, genreid])
+}
+
+model Prefer {
+    userid Int 
+    genreid Int 
+    createdAt DateTime @default(now())
+
+    
+    user User @relation(
+        fields: [userid],
+        references: [userid]
+    )
+
+    genre Genre @relation(
+        fields: [genreid], 
+        references: [genreid]
+    )
+
+
+    @@id([userid, genreid])
+}
+
+model InterestBook {
+    bookid Int 
+    interestid Int 
+    createdAt DateTime @default(now())
+
+     book Book @relation(
+        fields: [bookid], 
+        references: [bookid]
+    )
+    
+    interest Interest @relation(
+        fields: [interestid],
+        references: [interestid]
+    )
+
+    @@id([bookid, interestid])
+}
+
