@@ -20,7 +20,7 @@ export async function serachOpenLibrary(query: string){
     return (data.docs ?? []).map((book: any) => ({
         key: book.key, 
         title: book.title, 
-        authors: book.author_name == [], 
+        authors: book.author_name ?? [],
         year: book.first_publish_year ?? null, 
         coverId: book.cover_i ?? null, 
         subjects: book.subject?.slice(0,5) ?? [], 

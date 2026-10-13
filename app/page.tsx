@@ -3,6 +3,7 @@
 
 import { useRouter } from 'next/navigation'
 import { FEATURES, TESTIMONIALS } from '../data'
+import BookSearch from './books-search'
 
 export default function LandingPage() {
   const router = useRouter()
@@ -78,6 +79,9 @@ export default function LandingPage() {
           </button>
         </div>
       </nav>
+      
+      <BookSearch />
+
 
       {/* Hero */}
       <section
