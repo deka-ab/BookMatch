@@ -12,6 +12,27 @@ model User {
   createdAt   DateTime      @default(now())
   hasInterest HasInterest[]
   preferences Prefer[]
+  goals UserGoal[]
+}
+
+model Goal{
+  goalid Int @id @default(autoincrement())
+  name String @unique 
+  description String 
+  createdAt   DateTime      @default(now())
+  users UserGoal[]
+}
+
+model UserGoal{
+  userid Int 
+  goalid Int 
+  createdAt   DateTime      @default(now())
+
+  user User @relation(fields: [userid], references: [userid], onDelete: Cascade)
+  goal Goal @relation(fields: [goalid], references: [goalid], onDelete: Cascade)
+
+  @@id([userid, goalid])
+
 }
 
 model Genre {
@@ -25,8 +46,11 @@ model Genre {
 
 model Book {
   bookid    Int      @id @default(autoincrement())
+  openLibraryId String @unique 
   title     String
-  author    String
+  author    String?
+  publishedYear Int?
+  coverId Int?
   createdAt DateTime @default(now())
 
   interests InterestBook[]
@@ -59,9 +83,8 @@ model BelongsTo {
   genreid   Int
   createdAt DateTime @default(now())
 
-  book Book @relation(fields: [bookid], references: [bookid])
-
-  genre Genre @relation(fields: [genreid], references: [genreid])
+  book Book @relation(fields: [bookid], references: [bookid], onDelete: Cascade)
+  genre Genre @relation(fields: [genreid], references: [genreid], onDelete: Cascade)
 
   @@id([bookid, genreid])
 }
@@ -72,7 +95,6 @@ model Prefer {
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userid], references: [userid])
-
   genre Genre @relation(fields: [genreid], references: [genreid])
 
   @@id([userid, genreid])
@@ -83,9 +105,8 @@ model InterestBook {
   interestid Int
   createdAt  DateTime @default(now())
 
-  book Book @relation(fields: [bookid], references: [bookid])
-
-  interest Interest @relation(fields: [interestid], references: [interestid])
+  book Book @relation(fields: [bookid], references: [bookid], onDelete: Cascade)
+  interest Interest @relation(fields: [interestid], references: [interestid], onDelete: Cascade)
 
   @@id([bookid, interestid])
 }

@@ -52,6 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Goal: 'Goal',
+  UserGoal: 'UserGoal',
   Genre: 'Genre',
   Book: 'Book',
   Interest: 'Interest',
@@ -85,6 +87,25 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const GoalScalarFieldEnum = {
+  goalid: 'goalid',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const UserGoalScalarFieldEnum = {
+  userid: 'userid',
+  goalid: 'goalid',
+  createdAt: 'createdAt'
+} as const
+
+export type UserGoalScalarFieldEnum = (typeof UserGoalScalarFieldEnum)[keyof typeof UserGoalScalarFieldEnum]
+
+
 export const GenreScalarFieldEnum = {
   genreid: 'genreid',
   name: 'name',
@@ -96,8 +117,11 @@ export type GenreScalarFieldEnum = (typeof GenreScalarFieldEnum)[keyof typeof Ge
 
 export const BookScalarFieldEnum = {
   bookid: 'bookid',
+  openLibraryId: 'openLibraryId',
   title: 'title',
   author: 'author',
+  publishedYear: 'publishedYear',
+  coverId: 'coverId',
   createdAt: 'createdAt'
 } as const
 
@@ -163,4 +187,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

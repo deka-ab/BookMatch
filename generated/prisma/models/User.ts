@@ -194,6 +194,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   hasInterest?: Prisma.HasInterestListRelationFilter
   preferences?: Prisma.PreferListRelationFilter
+  goals?: Prisma.UserGoalListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   hasInterest?: Prisma.HasInterestOrderByRelationAggregateInput
   preferences?: Prisma.PreferOrderByRelationAggregateInput
+  goals?: Prisma.UserGoalOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -211,6 +213,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   hasInterest?: Prisma.HasInterestListRelationFilter
   preferences?: Prisma.PreferListRelationFilter
+  goals?: Prisma.UserGoalListRelationFilter
 }, "userid">
 
 export type UserOrderByWithAggregationInput = {
@@ -235,6 +238,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   hasInterest?: Prisma.HasInterestCreateNestedManyWithoutUserInput
   preferences?: Prisma.PreferCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -242,12 +246,14 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   hasInterest?: Prisma.HasInterestUncheckedCreateNestedManyWithoutUserInput
   preferences?: Prisma.PreferUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hasInterest?: Prisma.HasInterestUpdateManyWithoutUserNestedInput
   preferences?: Prisma.PreferUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -255,6 +261,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hasInterest?: Prisma.HasInterestUncheckedUpdateManyWithoutUserNestedInput
   preferences?: Prisma.PreferUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -311,6 +318,20 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutGoalsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGoalsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  upsert?: Prisma.UserUpsertWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoalsInput, Prisma.UserUpdateWithoutGoalsInput>, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
 export type UserCreateNestedOneWithoutHasInterestInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutHasInterestInput, Prisma.UserUncheckedCreateWithoutHasInterestInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutHasInterestInput
@@ -339,15 +360,59 @@ export type UserUpdateOneRequiredWithoutPreferencesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPreferencesInput, Prisma.UserUpdateWithoutPreferencesInput>, Prisma.UserUncheckedUpdateWithoutPreferencesInput>
 }
 
+export type UserCreateWithoutGoalsInput = {
+  createdAt?: Date | string
+  hasInterest?: Prisma.HasInterestCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGoalsInput = {
+  userid?: number
+  createdAt?: Date | string
+  hasInterest?: Prisma.HasInterestUncheckedCreateNestedManyWithoutUserInput
+  preferences?: Prisma.PreferUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGoalsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+}
+
+export type UserUpsertWithoutGoalsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGoalsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
+export type UserUpdateWithoutGoalsInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hasInterest?: Prisma.HasInterestUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGoalsInput = {
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hasInterest?: Prisma.HasInterestUncheckedUpdateManyWithoutUserNestedInput
+  preferences?: Prisma.PreferUncheckedUpdateManyWithoutUserNestedInput
+}
+
 export type UserCreateWithoutHasInterestInput = {
   createdAt?: Date | string
   preferences?: Prisma.PreferCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutHasInterestInput = {
   userid?: number
   createdAt?: Date | string
   preferences?: Prisma.PreferUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutHasInterestInput = {
@@ -369,23 +434,27 @@ export type UserUpdateToOneWithWhereWithoutHasInterestInput = {
 export type UserUpdateWithoutHasInterestInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preferences?: Prisma.PreferUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutHasInterestInput = {
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   preferences?: Prisma.PreferUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutPreferencesInput = {
   createdAt?: Date | string
   hasInterest?: Prisma.HasInterestCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPreferencesInput = {
   userid?: number
   createdAt?: Date | string
   hasInterest?: Prisma.HasInterestUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.UserGoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPreferencesInput = {
@@ -407,12 +476,14 @@ export type UserUpdateToOneWithWhereWithoutPreferencesInput = {
 export type UserUpdateWithoutPreferencesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hasInterest?: Prisma.HasInterestUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPreferencesInput = {
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hasInterest?: Prisma.HasInterestUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.UserGoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -423,11 +494,13 @@ export type UserUncheckedUpdateWithoutPreferencesInput = {
 export type UserCountOutputType = {
   hasInterest: number
   preferences: number
+  goals: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hasInterest?: boolean | UserCountOutputTypeCountHasInterestArgs
   preferences?: boolean | UserCountOutputTypeCountPreferencesArgs
+  goals?: boolean | UserCountOutputTypeCountGoalsArgs
 }
 
 /**
@@ -454,12 +527,20 @@ export type UserCountOutputTypeCountPreferencesArgs<ExtArgs extends runtime.Type
   where?: Prisma.PreferWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserGoalWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   userid?: boolean
   createdAt?: boolean
   hasInterest?: boolean | Prisma.User$hasInterestArgs<ExtArgs>
   preferences?: boolean | Prisma.User$preferencesArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -482,6 +563,7 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   hasInterest?: boolean | Prisma.User$hasInterestArgs<ExtArgs>
   preferences?: boolean | Prisma.User$preferencesArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -492,6 +574,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     hasInterest: Prisma.$HasInterestPayload<ExtArgs>[]
     preferences: Prisma.$PreferPayload<ExtArgs>[]
+    goals: Prisma.$UserGoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     userid: number
@@ -892,6 +975,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   hasInterest<T extends Prisma.User$hasInterestArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$hasInterestArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$HasInterestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   preferences<T extends Prisma.User$preferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$preferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PreferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserGoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1361,6 +1445,30 @@ export type User$preferencesArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.PreferScalarFieldEnum | Prisma.PreferScalarFieldEnum[]
+}
+
+/**
+ * User.goals
+ */
+export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserGoal
+   */
+  select?: Prisma.UserGoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserGoal
+   */
+  omit?: Prisma.UserGoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserGoalInclude<ExtArgs> | null
+  where?: Prisma.UserGoalWhereInput
+  orderBy?: Prisma.UserGoalOrderByWithRelationInput | Prisma.UserGoalOrderByWithRelationInput[]
+  cursor?: Prisma.UserGoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserGoalScalarFieldEnum | Prisma.UserGoalScalarFieldEnum[]
 }
 
 /**
